@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IRegisterVehicleDTO } from "../dtos/IRegisterVehicleDTO";
-import { IVehiclesRepository } from "../repositories/IVehiclesRepository";
+import { IRegisterVehicleDTO } from "../../dtos/IRegisterVehicleDTO";
+import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 
 @injectable()
 class CreateVehicleUseCase {
