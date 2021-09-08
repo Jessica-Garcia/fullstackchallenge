@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { DeleteResult, getRepository, Repository } from "typeorm";
 import { IRegisterVehicleDTO } from "../../dtos/IRegisterVehicleDTO";
 import { Vehicle } from "../../entities/Vehicle";
 import { IVehiclesRepository } from "../IVehiclesRepository";
@@ -43,9 +43,14 @@ class VehiclesRepository implements IVehiclesRepository{
 
   async update(id: string, data: IRegisterVehicleDTO): Promise<Vehicle> {
     await this.repository.update(id, data);
-    
+
     const updatedVehicle = await this.repository.findOne(id);
     return updatedVehicle;
+  }
+
+  async delete(id: string): Promise<DeleteResult>{
+    const deletedVehicle = await this.repository.delete(id);
+    return deletedVehicle;
   }
 }
 
