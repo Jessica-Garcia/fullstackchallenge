@@ -40,6 +40,13 @@ class VehiclesRepository implements IVehiclesRepository{
     const vehicles = await this.repository.find();
     return vehicles;
   }
+
+  async update(id: string, data: IRegisterVehicleDTO): Promise<Vehicle> {
+    await this.repository.update(id, data);
+    
+    const updatedVehicle = await this.repository.findOne(id);
+    return updatedVehicle;
+  }
 }
 
 export { VehiclesRepository }

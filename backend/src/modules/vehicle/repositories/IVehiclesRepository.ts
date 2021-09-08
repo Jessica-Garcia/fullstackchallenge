@@ -6,6 +6,7 @@ interface IVehiclesRepository{
   findByPlate(plate: string): Promise<Vehicle>;
   findById(id: string): Promise<Vehicle>;
   list(): Promise<Vehicle[]>;
+  update(id: string, data: IRegisterVehicleDTO): Promise<Vehicle>;
 }
 
 export { IVehiclesRepository }
