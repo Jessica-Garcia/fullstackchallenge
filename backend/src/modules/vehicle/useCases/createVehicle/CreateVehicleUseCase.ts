@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 import { IRegisterVehicleDTO } from "../../dtos/IRegisterVehicleDTO";
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 
@@ -20,7 +21,7 @@ class CreateVehicleUseCase {
     const vehicleAlreadyRegistered = await this.vehiclesRepository.findByPlate(plate);
 
     if(vehicleAlreadyRegistered){
-      throw new Error('Vehicle already registered!');
+      throw new AppError('Vehicle already registered!');
     }
 
     await this.vehiclesRepository.create({
