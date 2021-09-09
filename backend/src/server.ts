@@ -3,10 +3,13 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import './database';
 import './shared/container';
+import cors from 'cors';
 import { router } from './routes';
 import { AppError } from './errors/AppError';
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
