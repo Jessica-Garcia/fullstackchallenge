@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Table, Badge, Button } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { useHistory } from "react-router"; 
 import api from "../../services/api";
 import moment from 'moment';
@@ -39,6 +39,19 @@ const Vehicles: React.FC = () => {
     history.push('/vehicles_register');
   }
 
+  function editVehicle(id: string){
+    history.push(`/vehicles_register/${id}`);
+  }
+
+  function viewVehicle(id: string){
+    history.push(`/vehicles/${id}`);
+  }
+
+  async function deleteVehicle(id: string){
+    await api.delete(`/vehicles/${id}`);
+    loadVehicles();
+  }
+
   return(
     <div className="container">
       <br />
@@ -71,8 +84,9 @@ const Vehicles: React.FC = () => {
                 <td>{vehicle.plate}</td>
                 <td>{formatDate(vehicle.created_at)}</td>
                 <td>
-                  <Button size="sm" variant="info">Editar</Button>{' '}
-                  <Button size="sm" variant="danger">Remover</Button>{' '}
+                  <Button size="sm" variant="warning" onClick={() => editVehicle(vehicle.id)}>Editar</Button>{' '}
+                  <Button size="sm" variant="success" onClick={() => viewVehicle(vehicle.id)}>Visualizar</Button>{' '}
+                  <Button size="sm" variant="danger" onClick={() => deleteVehicle(vehicle.id)} >Remover</Button>{' '}
                 </td>
               </tr>
             ))
